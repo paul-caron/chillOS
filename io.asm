@@ -4,6 +4,16 @@
 GetChar:
   mov ah, 0x00 ;
   int 0x16     ;
+  mov ah, [canonical]   ;
+  cmp ah, 0x01 ; check if canonical mode
+  je _Canonical_PrintChar ;
+  ret ;
+_Canonical_PrintChar ;
+  mov cx, 0x01 ; times to print char
+  mov bx, 0x00 ; page number
+  mov ah, 0x0E ; 
+  int 0x10     ;
+  
   ret ;
 
 ; move cursor to x y coordinate
@@ -77,18 +87,6 @@ Print:
   jmp Print    ;
 ._done: ;
   ret ;
-
-
-;  mov ah, 0x0E ;
-;._loop:
-;  lodsb ;
-;  cmp al, 0 ;
-;  je ._done ;
-;  int 0x10 ;
-;  jmp ._loop ;
-;._done:
-;  ret ;
-
 
 
 

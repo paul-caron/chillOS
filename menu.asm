@@ -1,7 +1,8 @@
 menu: db "Menu : ", 0x0A, 0x0D
       db "  1 - HelloWorld", 0x0A, 0x0D
       db "  2 - PrintTime", 0x0A, 0x0D
-      db "  3 - Reboot", 0x0A, 0x0D, 0x00
+      db "  3 - Reboot", 0x0A, 0x0D
+      db "  4 - REPL", 0x0A, 0x0D, 0x00
 
 ; HelloWorld function
 hello:
@@ -23,6 +24,8 @@ _menu_select:
   je option_2    ;
   cmp al, '3'    ;
   je option_3    ;
+  cmp al, '4'    ;
+  je option_4    ;
   jmp _menu_select   ;
                  
   ret            ;
@@ -39,4 +42,12 @@ option_2:
 option_3:
   call Reboot;
   hlt ; 
+
+option_4:
+  call EnableCanonical ;
+  jmp _menu_select;
+
+
+
+
 

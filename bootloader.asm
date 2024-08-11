@@ -5,6 +5,9 @@ start: jmp main
 ;; data
 msg: db "Welcome to ChillPill OS", 0x0A, 0x0D, 0x00
 clock_string: db "00:00:00", 0x00 
+canonical: db 0x00
+
+
 ;; includes
 sys:
   %include "sys.asm"
