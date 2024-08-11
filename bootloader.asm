@@ -18,6 +18,9 @@ io:
 rtc:
   %include "rtc.asm"
 
+repl:
+  %include "repl.asm"
+
 menu:
   %include "menu.asm"
 

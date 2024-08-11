@@ -44,7 +44,7 @@ option_3:
   hlt ; 
 
 option_4:
-  call EnableCanonical ;
+  call REPL ;
   jmp _menu_select;
 
 

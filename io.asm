@@ -8,7 +8,7 @@ GetChar:
   cmp ah, 0x01 ; check if canonical mode
   je _Canonical_PrintChar ;
   ret ;
-_Canonical_PrintChar ;
+_Canonical_PrintChar: ;
   mov cx, 0x01 ; times to print char
   mov bx, 0x00 ; page number
   mov ah, 0x0E ; 
@@ -16,6 +16,29 @@ _Canonical_PrintChar ;
   
   ret ;
 
+; get cursor data
+; params none
+; returns: ch = scanline, cl = end scanline, dh = row, dl = column
+GetCursor:
+  push ax ;
+  push bx ;
+  push sp ;
+  push bp ;
+  push si ;
+  push di ;
+
+  mov ah, 0x03 ;
+  mov bh, 0x00 ; page number
+  int 0x10 ;
+  
+  pop di ;
+  pop si ;
+  pop bp ;
+  pop sp ;
+  pop bx ;
+  pop ax ;
+
+  ret ;
 ; move cursor to x y coordinate
 ; param bh = Y coordinate
 ; param bl = x coordinate
