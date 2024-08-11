@@ -1,11 +1,14 @@
 org 0x7c00
 bits 16
-start: jmp boot
+start: jmp main
 
 ;; data
 msg: db "Welcome to ChillPill OS", 0x0A, 0x0D, 0x00
 clock_string: db "00:00:00", 0x00 
 ;; includes
+sys:
+  %include "sys.asm"
+
 io:
   %include "io.asm"
 
@@ -15,7 +18,8 @@ rtc:
 menu:
   %include "menu.asm"
 
-boot:
+;; main
+main:
   cli ; no interrupts
   cld ; all that we need to init
 
