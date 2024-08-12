@@ -1,17 +1,14 @@
-menu: db "Menu : ", 0x0A, 0x0D
-      db "  1 - HelloWorld", 0x0A, 0x0D
-      db "  2 - PrintTime", 0x0A, 0x0D
-      db "  3 - Reboot", 0x0A, 0x0D
-      db "  4 - REPL", 0x0A, 0x0D, 0x00
-
-; HelloWorld function
-hello:
-  %include "hello.asm"
-
 ; print menu
 PrintMenu:
-  mov si, menu ;
+  push ds ;
+  mov ax, menu_str ;
+  shr ax, 0x04 ;
+  mov ds, ax   ;
+  mov ax, menu_str ;
+  and ax, 0x0F ;
+  mov si, ax   ;
   call Print   ;
+  pop ds ;
   ret          ;
 
 Menu:
@@ -23,27 +20,19 @@ _menu_select:
   cmp al, '2'    ;
   je option_2    ;
   cmp al, '3'    ;
-  je option_3    ;
-  cmp al, '4'    ;
-  je option_4    ;
+  je option_3 ;
   jmp _menu_select   ;
-                 
   ret            ;
 
-
 option_1:
-  call HelloWorld;
-  jmp _menu_select;
-
-option_2:
   call PrintTime ;
   jmp _menu_select;
 
-option_3:
+option_2:
   call Reboot;
   hlt ; 
 
-option_4:
+option_3:
   call REPL ;
   jmp _menu_select;
 

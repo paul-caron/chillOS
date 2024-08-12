@@ -2,62 +2,26 @@ org 0x7c00
 bits 16
 start: jmp main
 
-;; data
-msg: db "Welcome to ChillPill OS", 0x0A, 0x0D, 0x00
-clock_string: db "00:00:00", 0x00 
-canonical: db 0x00
-
-
-;; includes
-sys:
-  %include "sys.asm"
-
-io:
-  %include "io.asm"
-
-rtc:
-  %include "rtc.asm"
-
-repl:
-  %include "repl.asm"
-
-menu:
-  %include "menu.asm"
-
 ;; main
 main:
   cli ; no interrupts
   cld ; all that we need to init
-
   ; set video mode
-  mov ah, 0x00 ;
-  mov al, 0x03 ; text color mode
-  int 0x10 ; 
-
-  ; move cursor
-  mov bh, 0x00 ; Y 
-  mov bl, 0x00 ; X
-  call MovCursor ;
-
-  ; print a char
-  mov al, '!'  ; char to print
-  mov bl, 0x02 ; text color
-  mov cx, 0x50 ; times to print
-  call PutChar ;
-
- ; move cursor                                                            
-  mov bh, 0x01 ; Y 
-  mov bl, 0x1A ; X 
-  call MovCursor ;
-                    
-  ;print welcome message str;
-  mov si, msg ;
-  call Print ;
-  ;start menu
-  call Menu ;
-
+  ;set the buffer
+  mov ax, 0x50 ;
+  mov es, ax ;
+  xor bx, bx ;
+  ;read 2 other sectors on this floopy
+  mov al, 0x02 ;read 2 sector
+  mov ch, 0x00 ;track 0
+  mov cl, 0x02 ;sector to read(the second sector)
+  mov dh, 0x00 ;head number
+  mov dl, 0x00 ;drive number
+  mov ah, 0x02 ;read sectors code
+  int 0x13     ;bios interrupt
+  ;execute kernel on sector 2
+  jmp 0x50:0x00 ;
   hlt ; halt the system
-
 ; Clear rest of bytes until last 2 bytes of 512 sector
 ; last two byte be the boot signature
 signature:

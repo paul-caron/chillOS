@@ -12,8 +12,7 @@ _Canonical_PrintChar: ;
   mov cx, 0x01 ; times to print char
   mov bx, 0x00 ; page number
   mov ah, 0x0E ; 
-  int 0x10     ;
-  
+  int 0x10     ; 
   ret ;
 
 ; get cursor data
@@ -39,6 +38,7 @@ GetCursor:
   pop ax ;
 
   ret ;
+
 ; move cursor to x y coordinate
 ; param bh = Y coordinate
 ; param bl = x coordinate
@@ -106,7 +106,7 @@ Print:
   mov cx, 0x01 ;
   mov ah, 0x0E ;
   int 0x10     ;
-  add si, 0x01 ;
+  inc si;
   jmp Print    ;
 ._done: ;
   ret ;
