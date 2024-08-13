@@ -6,10 +6,10 @@ Reboot:
 
 EnableCanonical:
   mov al, 0x01 ;
-  mov [canonical+0x00], al ;
+  mov [canonical], al ;
   ret ;
 
 DisableCanonical:
   mov al, 0x00 ;
-  mov [canonical+0x00], al ;
+  mov [canonical], al ;
   ret ;

@@ -1,4 +1,4 @@
-; print menu
+
 PrintMenu:
   mov si, menu_str;
   call Print   ;
@@ -19,9 +19,7 @@ Menu:
   ret            ;
 
 .option_1:
-;  call PrintTime ;
-  mov si, clock_string;
-  call Print;
+  call PrintTime ;
   jmp ._menu_select;
 
 .option_2:

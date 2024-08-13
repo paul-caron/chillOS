@@ -39,10 +39,10 @@ PrintTime:
   add al, 0x30 ;
   mov byte[clock_string+0x07], al ;
 
-  ;Print
-  mov si, clock_string ;
 
+  ;Print
   pop ds ;
+  mov si, clock_string ;
   call Print ;
 
   ret   ;
