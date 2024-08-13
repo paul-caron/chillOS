@@ -1,6 +1,8 @@
-;clock_string: db "01:23:45", 0x00 ;
+
 
 PrintTime:
+  push ds ;
+
   mov ah, 0x02 ;
   int 0x1A     ;
 
@@ -38,12 +40,9 @@ PrintTime:
   mov byte[clock_string+0x07], al ;
 
   ;Print
-  mov ax, clock_string ;
-  shr ax, 0x04 ;
-  mov ds, ax ;
-  mov ax, clock_string ;
-  and ax, 0x0F ;
-  mov si, ax ;
+  mov si, clock_string ;
+
+  pop ds ;
   call Print ;
 
   ret   ;

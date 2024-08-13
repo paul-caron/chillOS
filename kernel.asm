@@ -24,6 +24,7 @@ main:
   ; setup segments ;
   mov ax, 0x50 ;
   mov ds, ax ;
+  mov es, ax ;
 
   ; set video mode
   mov ah, 0x00 ;
@@ -34,6 +35,15 @@ main:
   mov si, kernel_version; 
   call Print ;
 
+  ; start menu ;
+  call Menu;
+
   hlt;
+
+
+
+
+
+
 
 
