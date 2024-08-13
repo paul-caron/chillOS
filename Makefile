@@ -11,7 +11,7 @@ kernel.o:
 	nasm -f bin kernel.asm -o kernel.o
 
 bootdisk: bootloader.o kernel.o
-	dd if=/dev/zero of=bootDisk.flp bs=512 count=3
+	dd if=/dev/zero of=bootDisk.flp bs=512 count=2880
 	dd conv=notrunc if=bootloader.o of=bootDisk.flp bs=512 count=1 seek=0
 	dd conv=notrunc if=kernel.o of=bootDisk.flp bs=512 count=1 seek=1
 

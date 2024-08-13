@@ -23,6 +23,7 @@ Menu:
   jmp ._menu_select;
 
 .option_2:
+  call WaitTen ;
   call Reboot;
   hlt ; 
 
