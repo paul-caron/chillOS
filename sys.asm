@@ -33,14 +33,4 @@ WaitOne:
   pop dx;
   pop cx;
   ret;
-;; Enable and Disable canonical mode
-;; canonical mode will print chars when types
-EnableCanonical:
-  mov al, 0x01 ;
-  mov [canonical], al ;
-  ret ;
 
-DisableCanonical:
-  mov al, 0x00 ;
-  mov [canonical], al ;
-  ret ;
