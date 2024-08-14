@@ -6,11 +6,18 @@ io:
   %include "io.asm"
 
 disk_error_string: db "BOOTLOADER: reading from disk error.", 0x0A, 0x0D, 0x00
-canonical: db 0x00 ;
+canonical: db 0x00 
+hex_string: db "0123456789ABCDEF"
+
 ;; main
 main:
   cli ;
   cld ;
+  ;setup stack
+  mov ax, 0x7c00;
+  mov sp, ax;
+  mov bp, ax;
+
   ;set the buffer
   mov ax, 0x50 ;
   mov es, ax ;

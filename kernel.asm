@@ -9,6 +9,8 @@ menu_str: db "Menu : ", 0x0A, 0x0D
           db "   1 - Display Time", 0x0A, 0x0D
           db "   2 - Reboot", 0x0A, 0x0D
           db "   3 - REPL", 0x0A, 0x0D, 0x00
+hex_string: db "01234567890ABCDEF"
+
 
 video:
   %include "video.asm"
@@ -23,19 +25,13 @@ repl:
 menu:
   %include "menu.asm"
 
-
-irq_handler:
-  
-  iret ;
-
 main:
   call VideoInit;
-
-  ; splash screen ;
-  mov si, kernel_version; 
-  call Print ;
-  call WaitFive ;
-
+  mov si, kernel_version;
+  call Print;
+  mov dx, 0x4321;
+  call PutHex;
+  call WaitFive;
   ; start menu ;
   call Menu;
 

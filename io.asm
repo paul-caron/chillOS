@@ -125,4 +125,34 @@ DisableCanonical:
   ret ;
 
 
+;param dx = word to print as hex
 
+PutHex:
+  push ax ;
+  push sp ;
+  push bp ;
+  push si ;
+  push di ;
+._printDigit:
+  mov ax, dx;
+  and ax, 0xf000;
+  shr ax, 0x0C;
+  add ax, hex_string;
+  mov si, ax;
+  mov ah, 0x0e;
+  mov al, [si];
+  mov bh, 0x00 ; page number
+  mov cx, 0x01; times to print character
+  mov bl, 0x02; text color
+  int 0x10 ;
+  shl dx, 0x04;
+  cmp dx, 0x00;
+  jne ._printDigit;
+
+  pop di ;
+  pop si ;
+  pop bp ;
+  pop sp ;
+  pop ax ;
+
+  ret ;
