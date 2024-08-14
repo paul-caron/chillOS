@@ -1,6 +1,6 @@
 
 PrintMenu:
-  mov si, menu_str;
+  mov si, menu_string;
   call Print   ;
   ret          ;
 
@@ -30,7 +30,8 @@ Menu:
   hlt ; 
 
 .option_3:
-  call REPL ;
+  call PrintMemoryWord ;
+  call GetChar;
   jmp Menu ;
 
 
