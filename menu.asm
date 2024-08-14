@@ -5,6 +5,7 @@ PrintMenu:
   ret          ;
 
 Menu:
+  call VideoInit ;
   call PrintMenu ;
 
 ._menu_select:
@@ -19,8 +20,9 @@ Menu:
   ret            ;
 
 .option_1:
-  call DisplayTime ;
-  jmp ._menu_select;
+  call PrintTime ;
+  call GetChar ;
+  jmp Menu;
 
 .option_2:
   call WaitOne ;
@@ -29,7 +31,7 @@ Menu:
 
 .option_3:
   call REPL ;
-  jmp ._menu_select;
+  jmp Menu ;
 
 
 

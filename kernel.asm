@@ -10,6 +10,8 @@ menu_str: db "Menu : ", 0x0A, 0x0D
           db "   2 - Reboot", 0x0A, 0x0D
           db "   3 - REPL", 0x0A, 0x0D, 0x00
 
+video:
+  %include "video.asm"
 io:
   %include "io.asm"
 rtc:
@@ -27,14 +29,12 @@ irq_handler:
   iret ;
 
 main:
-  ; set video mode
-  mov ah, 0x00 ;
-  mov al, 0x03 ; text color mode
-  int 0x10 ;                     ;
+  call VideoInit;
 
-  ; print version ;
+  ; splash screen ;
   mov si, kernel_version; 
   call Print ;
+  call WaitFive ;
 
   ; start menu ;
   call Menu;
