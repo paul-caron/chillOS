@@ -16,6 +16,8 @@ Menu:
   je .option_2    ;
   cmp al, '3'    ;
   je .option_3 ;
+  cmp al, '4' ;
+  je .option_4;
   jmp ._menu_select   ;
   ret            ;
 
@@ -34,7 +36,8 @@ Menu:
   call GetChar;
   jmp Menu ;
 
-
-
+.option_4:
+  call InputMemoryByte ;
+  jmp Menu ;
 
 

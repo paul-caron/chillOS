@@ -9,6 +9,7 @@ menu_string: db "Menu : ", 0x0A, 0x0D
              db "   1 - Display Time", 0x0A, 0x0D
              db "   2 - Reboot", 0x0A, 0x0D
              db "   3 - Read Memory Word", 0x0A, 0x0D
+             db "   4 - Write Memory Byte", 0x0a, 0x0D
              db "   (ctrl+a,x) - Exit QEMU", 0x0A, 0x0D, 0x00
 hex_string: db "0123456789ABCDEF"
 
