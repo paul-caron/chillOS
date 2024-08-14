@@ -47,3 +47,24 @@ PrintTime:
 
   ret   ;
 
+
+DisplayTime:
+  call GetCursor;
+  push dx;
+;._refresh:
+  mov bh, 0x00 ;
+  mov bl, 0x46 ;
+  call MovCursor;
+  call PrintTime ; 
+;  call WaitOne ;
+;  jmp ._refresh ;
+  pop dx;
+  mov bh, dh ;
+  mov bl, dl ;
+  call MovCursor;
+  ret ;
+
+
+
+
+

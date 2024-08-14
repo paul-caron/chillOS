@@ -4,9 +4,8 @@ start: jmp main
 
 ;; main
 main:
-  cli ; no interrupts
-  cld ; all that we need to init
-  ; set video mode
+  cli ;
+  cld ;
   ;set the buffer
   mov ax, 0x50 ;
   mov es, ax ;

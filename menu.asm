@@ -19,11 +19,11 @@ Menu:
   ret            ;
 
 .option_1:
-  call PrintTime ;
+  call DisplayTime ;
   jmp ._menu_select;
 
 .option_2:
-  call WaitTen ;
+  call WaitOne ;
   call Reboot;
   hlt ; 
 
