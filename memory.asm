@@ -127,3 +127,29 @@ InputMemoryByte:
   mov al, dl;
   call WriteMemoryByte;
   ret;
+
+; param es = page
+ReadMemoryPage:
+  mov bx, 0x7C00;page offset
+  mov ax, 0x00;
+  mov es, ax;
+  .loop:
+  call ReadMemoryWord;
+  mov dx, ax;
+  push bx;
+  call PutHexWord;
+  mov ah, 0x0e;
+  mov al, ' ';
+  mov bl, 0x02;
+  mov cx, 0x01;
+  int 0x10;
+  pop bx;
+  add bx, 0x02;
+  cmp bx, 0x7D00;
+  jne .loop;
+  ret;
+
+
+
+
+
