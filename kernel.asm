@@ -14,7 +14,7 @@ menu_string: db "Menu : ", 0x0A, 0x0D
              db "   (ctrl+a,x) - Exit QEMU", 0x0A, 0x0D, 0x00
 hex_string: db "0123456789ABCDEF"
 prompt_byte: db "FF", 0x00;
-;prompt_word: db "word<FFFF>", 0x00;
+prompt_word: db "FFFF", 0x00;
 
 ;SECTION .text
 video:

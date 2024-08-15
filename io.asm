@@ -2,9 +2,14 @@
 ; returns : ah = scan code 
 ;           al = character
 GetChar:
+  push cx;
+  push dx;
   mov ah, 0x00 ;
-  int 0x16     ; 
-  ret ;
+  int 0x16     ;
+  pop dx;
+  pop cx;
+  ret
+
 
 ; get cursor data
 ; params none
@@ -20,7 +25,7 @@ GetCursor:
   mov ah, 0x03 ;
   mov bh, 0x00 ; page number
   int 0x10 ;
-  
+
   pop di ;
   pop si ;
   pop bp ;
@@ -126,3 +131,11 @@ PutHexWord:
   jne ._printDigit;
 
   ret ;
+
+CursorLineBegin:
+  call GetCursor;
+  mov ax, dx;
+  mov bx, ax;
+  mov bl, 0x00;
+  call MovCursor;
+  ret;
