@@ -130,8 +130,8 @@ InputMemoryByte:
 
 ; param es = page
 ReadMemoryPage:
-  mov bx, 0x7C00;page offset
-  mov ax, 0x00;
+  mov bx, 0x00;page offset
+  mov ax, 0x07C0;
   mov es, ax;
   .loop:
   call ReadMemoryWord;
@@ -145,7 +145,7 @@ ReadMemoryPage:
   int 0x10;
   pop bx;
   add bx, 0x02;
-  cmp bx, 0x7D00;
+  cmp bx, 0x0100;
   jne .loop;
   ret;
 
