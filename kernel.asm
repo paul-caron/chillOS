@@ -12,7 +12,8 @@ menu_string: db "Menu : ", 0x0A, 0x0D
              db "   4 - Write Memory Byte", 0x0a, 0x0D
              db "   (ctrl+a,x) - Exit QEMU", 0x0A, 0x0D, 0x00
 hex_string: db "0123456789ABCDEF"
-
+hex_byte_buffer: db "1234", 0x00
+hex_word_buffer: db "12345678", 0x00
 
 video:
   %include "video.asm"
