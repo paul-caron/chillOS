@@ -13,7 +13,7 @@ kernel.o:
 bootdisk: bootloader.o kernel.o
 	dd if=/dev/zero of=bootDisk.flp bs=512 count=4
 	dd conv=notrunc if=bootloader.o of=bootDisk.flp bs=512 count=1 seek=0
-	dd conv=notrunc if=kernel.o of=bootDisk.flp bs=512 count=2 seek=1
+	dd conv=notrunc if=kernel.o of=bootDisk.flp bs=512 count=3 seek=1
 
 
 

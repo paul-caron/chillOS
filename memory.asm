@@ -34,6 +34,22 @@ GetHex:
   xor ax, ax;
 .getcharloop:
   call GetChar; get char in al
+  push ax;
+  push bx;
+  push cx;
+  push dx;
+  mov bx, 0x02;
+  mov cx, 0x01;
+  call PutChar;
+  call GetCursor;
+  mov ax, dx;
+  mov bx, ax;
+  add bl, 0x01;
+  call MovCursor;
+  pop dx;
+  pop cx;
+  pop bx;
+  pop ax;
   cmp al, '0';
   je .addDec;
   cmp al, '1';
@@ -91,6 +107,14 @@ GetHex:
   ret;
 
 InputMemoryByte:
+  mov ax, prompt_byte;
+  mov si, ax;
+  call Print;
+  call GetCursor;
+  mov ax, dx;
+  mov bx, ax;
+  mov bl, 0x00;
+  call MovCursor;
   mov ax, 0x02;
   call GetHex;
   mov ax, 0x00;
@@ -98,6 +122,8 @@ InputMemoryByte:
   mov ax, 0x7c00;
   mov bx, ax;
   xor ax, ax;
-  mov al, cl;
+  mov dl, cl;
+  call GetChar;
+  mov al, dl;
   call WriteMemoryByte;
   ret;

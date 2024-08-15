@@ -2,12 +2,11 @@ org 0x7c00
 bits 16
 start: jmp main
 
-io:
-  %include "io.asm"
+;io:
+;  %include "io.asm"
 
-disk_error_string: db "BOOTLOADER: reading from disk error.", 0x0A, 0x0D, 0x00
-canonical: db 0x00 
-hex_string: db "0123456789ABCDEF"
+;disk_error_string: db "BOOTLOADER: reading from disk error.", 0x0A, 0x0D, 0x00 
+;hex_string: db "0123456789ABCDEF"
 
 ;; main
 main:
@@ -37,8 +36,8 @@ main:
   hlt ; halt the system
 
 disk_error:
-  mov si, disk_error_string;
-  call Print ;
+ ; mov si, disk_error_string;
+  ;call Print ;
   hlt ;
 
 ; Clear rest of bytes until last 2 bytes of 512 sector

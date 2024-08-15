@@ -3,16 +3,7 @@
 ;           al = character
 GetChar:
   mov ah, 0x00 ;
-  int 0x16     ;
-  mov ah, [canonical]   ;
-  cmp ah, 0x01 ; check if canonical mode
-  je _Canonical_PrintChar ;
-  ret ;
-_Canonical_PrintChar: ;
-  mov cx, 0x01 ; times to print char
-  mov bx, 0x00 ; page number
-  mov ah, 0x0E ; 
-  int 0x10     ; 
+  int 0x16     ; 
   ret ;
 
 ; get cursor data
@@ -109,19 +100,6 @@ Print:
   inc si;
   jmp Print    ;
 ._done: ;
-  ret ;
-
-
-;; Enable and Disable canonical mode
-;; canonical mode will print chars when types
-EnableCanonical:
-  mov al, 0x01 ;
-  mov [canonical], al ;
-  ret ;
-
-DisableCanonical:
-  mov al, 0x00 ;
-  mov [canonical], al ;
   ret ;
 
 
