@@ -8,11 +8,9 @@ ReadMemoryWord:
 
 
 PrintMemoryWord:
-  mov ax, 0x00;
-  mov es, ax;
-  mov ax, 0x7c00;
-  mov bx, ax
+  call InputAddress;
   call ReadMemoryWord;
+  call CursorLineBegin;
   mov dx, ax;
   call PutHexWord;
   ret;

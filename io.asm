@@ -133,9 +133,17 @@ PutHexWord:
   ret ;
 
 CursorLineBegin:
+  push ax;
+  push bx;
+  push cx;
+  push dx;
   call GetCursor;
   mov ax, dx;
   mov bx, ax;
   mov bl, 0x00;
   call MovCursor;
+  pop dx;
+  pop cx;
+  pop bx;
+  pop ax;
   ret;
