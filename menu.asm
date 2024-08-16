@@ -20,6 +20,8 @@ Menu:
   je .option_4;
   cmp al, '5';
   je .option_5;
+  cmp al, '6';
+  je .option_6;
   jmp ._menu_select   ;
   ret            ;
 
@@ -46,3 +48,10 @@ Menu:
   call ReadMemoryPage;
   call GetChar;
   jmp Menu;
+
+.option_6:
+  mov ax, 0xB0 ;
+  mov ds, ax;
+  jmp 0xB0:0x00 ;
+  jmp Menu;
+  hlt;

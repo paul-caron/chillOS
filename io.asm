@@ -1,5 +1,5 @@
 ; get character input
-; returns : ah = scan code 
+; returns : ah = scan code
 ;           al = character
 GetChar:
   push cx;
