@@ -14,4 +14,7 @@ main:
   mov si, hex_string;
   call Print;
   call WaitOne;
+  mov ax, 0x50;
+  mov ds, ax;
+  jmp 0x50:0x00;
   hlt;

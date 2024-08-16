@@ -9,7 +9,7 @@ menu_string: db "Menu : ", 0x0A, 0x0D
              db "   3 - Read Memory Word", 0x0A, 0x0D
              db "   4 - Write Memory Byte", 0x0a, 0x0D
              db "   5 - Read Memory Page", 0x0A, 0x0D
-             db "   6 - Jump to and from a Program", 0x0A, 0x0D
+             db "   6 - Instructions", 0x0A, 0x0D
              db "   (ctrl+a,x) - Exit QEMU", 0x0A, 0x0D, 0x00
 hex_string: db "0123456789ABCDEF"
 prompt_byte: db "FF", 0x00;
