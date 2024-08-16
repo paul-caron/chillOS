@@ -107,16 +107,8 @@ GetHex:
   .end:
   ret;
 
-InputMemoryByte:
-  mov ax, prompt_byte;
-  mov si, ax;
-  call Print;
-  call CursorLineBegin;
-  mov ax, 0x02;
-  call GetHex;
-  push cx;
-  call GetChar;
-  call CursorLineBegin;
+;get user input of es:bx address
+InputAddress:
   mov si, prompt_word;
   call Print;
   call CursorLineBegin;
@@ -134,16 +126,31 @@ InputMemoryByte:
   call GetChar;
   pop bx
   pop es;
+  ret;
+
+InputMemoryByte:
+  mov ax, prompt_byte;
+  mov si, ax;
+  call Print;
+  call CursorLineBegin;
+  mov ax, 0x02;
+  call GetHex;
+  push cx;
+  call GetChar;
+  call CursorLineBegin;
+  call InputAddress;
   pop ax;
   call WriteMemoryByte;
   ret;
 
 ; param es = page
 ReadMemoryPage:
-  mov bx, 0x00;page offset
-  mov ax, 0x07C0;
-  mov es, ax;
+  call InputAddress;
+  call CursorLineBegin;
+  mov ax, bx;
+  add ax, 0x0100;
   .loop:
+  push ax;
   call ReadMemoryWord;
   mov dx, ax;
   push bx;
@@ -155,7 +162,8 @@ ReadMemoryPage:
   int 0x10;
   pop bx;
   add bx, 0x02;
-  cmp bx, 0x0100;
+  pop ax;
+  cmp bx, ax;
   jne .loop;
   ret;
 
