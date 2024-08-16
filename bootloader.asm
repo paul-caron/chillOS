@@ -31,7 +31,12 @@ main:
   int 0x13     ;bios interrupt
   ;disk reading error handling
   jc disk_error ;
+
   ;execute kernel on sector 2
+  mov ax, 0x50;
+  mov ds, ax;
+  mov ss, ax;
+
   jmp 0x50:0x00 ;
   hlt ; halt the system
 

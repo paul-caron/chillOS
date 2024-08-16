@@ -1,8 +1,6 @@
-org 0x00500
 bits 16
 start: jmp main;
 
-;SECTION .data
 kernel_version: db "KERNEL: ChillOS v0.0.0", 0x0A, 0x0D, 0x00
 clock_string: db "00:00:00", 0x00
 menu_string: db "Menu : ", 0x0A, 0x0D
@@ -16,7 +14,6 @@ hex_string: db "0123456789ABCDEF"
 prompt_byte: db "FF", 0x00;
 prompt_word: db "FFFF", 0x00;
 
-;SECTION .text
 video:
   %include "video.asm"
 io:
@@ -31,8 +28,6 @@ menu:
   %include "menu.asm"
 
 main:
-;  mov ax, 0x50;
-;  mov ds, ax;
   call VideoInit;
   ; splash screen ;
   mov si, kernel_version;
