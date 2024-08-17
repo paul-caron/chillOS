@@ -23,7 +23,7 @@ bootdisk: bootloader.o kernel.o
 	dd conv=notrunc if=instructions.o of=bootDisk.flp bs=512 count=5 seek=4
 
 hda:
-	dd if=/dev/zero of=hda.img bs=512 count=2
+	dd if=/dev/zero of=hda.img bs=512 count=100
 	dd conv=notrunc if=hello.o of=hda.img bs=512 count=1 seek=0
 
 clean:
