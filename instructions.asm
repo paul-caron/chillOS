@@ -11,22 +11,31 @@ hex_string:
   db "                            ChillOS Instructions                              "
   db 5*32+26
   db 5*32+26
+  db "                                                                              "
+  db 5*32+26
+  db 5*32+26
   db "  Memory Read and Write:                                                      "
   db 5*32+26
   db 5*32+26
-  db "    All inputs must be in hexadecimal with caps on.                           "
+  db "    All inputs must be in hexadecimal with caps lock on.                      "
   db 5*32+26
   db 5*32+26
-  db "    For reads, first enter the ES register and then BX fegister. (ES:BX)      "
+  db "    For reads, first enter the ES register and then BX register. (ES:BX)      "
   db 5*32+26
   db 5*32+26
   db "    For writing a byte, the first prompt is byte value followed by ES:BX.     "
+  db 5*32+26
+  db 5*32+26
+  db "                                                                              "
   db 5*32+26
   db 5*32+26
   db "  Hard Drives Count:                                                          "
   db 5*32+26
   db 5*32+26
   db "    Gets the number of hard drives from the Bios Data Area (BDA, byte 40:75). "
+  db 5*32+26
+  db 5*32+26
+  db "                                                                              "
   db 5*32+26
   db 0xC8
   times 78 db 6*32+13
