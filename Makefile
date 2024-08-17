@@ -11,7 +11,7 @@ kernel.o:
 	nasm -f bin kernel.asm -o kernel.o
 
 instructions.o:
-	nasm -f bin program.asm -o instructions.o
+	nasm -f bin instructions.asm -o instructions.o
 
 bootdisk: bootloader.o kernel.o
 	dd if=/dev/zero of=bootDisk.flp bs=512 count=9
