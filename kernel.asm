@@ -11,11 +11,15 @@ menu_string: db "Menu : ", 0x0A, 0x0D
              db "   5 - Read Memory Page", 0x0A, 0x0D
              db "   6 - Instructions", 0x0A, 0x0D
              db "   7 - Hard Drives Count", 0x0A, 0x0D
+             db "   8 - Load Program From Hard Drive", 0x0A, 0x0D
+             db "   9 - Jump to Program", 0x0A, 0x0D
              db "   (ctrl+a,x) - Exit QEMU", 0x0A, 0x0D, 0x00
 hex_string: db "0123456789ABCDEF"
 prompt_byte: db "FF", 0x00;
 prompt_word: db "FFFF", 0x00;
 
+disk:
+  %include "disk.asm"
 video:
   %include "video.asm"
 io:

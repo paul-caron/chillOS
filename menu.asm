@@ -26,6 +26,10 @@ Menu:
   je .option_6;
   cmp al, '7';
   je .option_7;
+  cmp al, '8';
+  je .option_8;
+  cmp al, '9';
+  je .option_9;
   jmp ._menu_select   ;
   ret            ;
 
@@ -68,3 +72,14 @@ Menu:
   call PutHexWord;
   call GetChar;
   jmp Menu;
+
+.option_8:
+  call LoadProgram;
+  jmp Menu;
+
+.option_9:
+  mov ax, 0x0800 ;
+  mov ds, ax;
+  jmp 0x0800:0x00 ;
+  hlt;
+

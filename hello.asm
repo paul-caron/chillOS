@@ -1,6 +1,6 @@
 jmp main;
 
-hex_string: db "Hello, this is not an X string.", 0x00
+hex_string: db "Hello Worldlings", 0x00
 
 io:
   %include "io.asm"
