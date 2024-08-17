@@ -22,8 +22,8 @@ main:
   mov es, ax ;
   xor bx, bx ;
 
-  ;read 2 other sectors on this floopy
-  mov al, 0x08 ;read 2 sector
+  ;read more sectors on this floopy
+  mov al, 0x08 ;read 8 sector
   mov ch, 0x00 ;track 0
   mov cl, 0x02 ;sector to read(the second sector)
   mov dh, 0x00 ;head number

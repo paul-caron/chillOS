@@ -1,7 +1,7 @@
 BUILD_DIR=build
 
 
-all: bootloader.o kernel.o instructions.o bootdisk
+all: bootloader.o kernel.o instructions.o bootdisk hda
 
 
 bootloader.o:
@@ -19,7 +19,8 @@ bootdisk: bootloader.o kernel.o
 	dd conv=notrunc if=kernel.o of=bootDisk.flp bs=512 count=3 seek=1
 	dd conv=notrunc if=instructions.o of=bootDisk.flp bs=512 count=5 seek=4
 
-
+hda:
+	dd if=/dev/zero of=hda.img bs=512 count=1000
 
 clean:
 	rm *.o
